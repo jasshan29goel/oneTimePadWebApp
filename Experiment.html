@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+
+</head>
+<body>
+
+
+	<!-- 	Heading of the Experiment-->	
+	<h1 class="text-h2-lightblue">
+		Vernam Cipher and Perfect secrecy
+	</h1>
+	<!-- 	Entire content of the Experiment-->	
+	<div class="content" id="experiment-article-section-4-content">
+
+		
+		<!-- First section of the Experiment-->	
+
+		<h2>
+			Testing Perfect Secrecy using Shannon's Theorem
+		</h2>
+		
+		<p>
+			Is the following encryption scheme perfectly secure?
+			You can observe as many encrypted text and key pairs as you wish.
+			Press "Next Plaintext" method to get more pairs.
+		</p>
+
+		<pre> 
+			Plaintext:
+			<textarea cols="50" id="plainarea" name="plainarea" readonly="readonly" rows="1">
+				11101010
+			</textarea>
+			<input name="changePlainText" onclick="next_plain_text()" type="button" value="Next Plaintext"/>
+		</pre>
+		<pre> 
+			Key:
+			<textarea cols="50" id="keyarea_gen" name="keyarea_gen" readonly="readonly" rows="1">
+				01010100
+			</textarea>
+			<input name="changeKey" onclick="next_key()" type="button" value="Next Keytext"/>
+		</pre>
+
+		<p>
+			<input name="btnEn" onclick="Encrypt_p()" type="button" value="v Encrypt v"/>
+		</p>
+		<pre>
+			Ciphertext: 
+			<textarea cols="50" id="cipherarea" name="cipherarea" readonly="readonly" rows="1">
+				01010100
+			</textarea>
+			<br/>
+			<input name="Next_Encryption" onclick="Next_Encryption()" type="button" value="Next Encryption Scheme"/>
+			<br/>
+		</pre>
+
+
+
+		<p>
+			For all the possible pairs of plaintext of
+			size 8, and the key given by you, we will provide you with the
+			encrypted texts with the same encryption scheme. You can observe the
+			input and try to break it. <br>Put your key here (between size 6 and 12): 
+			<br/>
+		</p> 
+		<form name="user_key">
+			<p>
+				<input cols="12" id="user_key" maxlength="12" name="limitedtextfield" type="text" value="01010100"/>
+			</p>
+		</form>
+		<br/>
+
+		<p> 
+			<input name="generatePairs" onclick="generate_all_pairs()" type="button" value="Encrytion Set"/>
+		</p>
+		<br/>
+
+		<p> 
+			<br/>
+			Multiple tuples of &lt;Plaintext, Ciphertext&gt;:
+			<br/>
+
+			<br/>
+		</p>
+		<p> 
+			<textarea cols="50" id="textarea2" name="textarea" rows="8">
+				
+			</textarea>
+		</p>
+		<br/>
+		<h2>
+			Is the given encryption scheme secure?
+		</h2>
+		<hr/>
+
+		<p>
+			Yes/No   
+		</p>
+		<form name="yesno">
+			<p>
+				<input id="yesno" maxlength="3" type="text" value=""/>
+			</p>
+		</form>
+
+		<p>
+		If NO, Give two plaintexts 'm1' and 'm2' for the above key such that Encryption(m1) = Encryption(m2)? </p>
+		<form name="m">
+			<p>
+				m1: <input id="m1" maxlength="20" type="text" value=""/> 
+			</p>
+			<p>
+				m2: <input id="m2" maxlength="20" type="text" value=""/>
+			</p>
+		</form>
+		<p>
+			<input name="checkAnswer" onclick="checkAnswer()" type="button" value="Check Answer!!"/> 
+		</p>
+		<br/><br/>
+		<textarea cols="50" id="notification" name="notification" rows="1" style="border: 0pt none ;">
+
+		</textarea>
+
+
+
+
+		<!-- Second section (The vernon cipher) of the experiment -->		
+		<h2>
+			Simulator
+		</h2>
+		<hr/><br/>
+
+		<p>
+			plaintext
+			<br/>
+			<textarea cols="25" id="p" name="p" rows="1">
+				10010011000110
+			</textarea>
+			<br/>
+		</p>
+		<p>
+			key =
+			
+			<input id="key" maxchars="25" name="key" size="25" type="text" value="1010110 0110001"/>
+			<input name="genKey" onclick="Vernam_RandKey()" type="button" value="Generate Random Key"/>
+		</p>
+		<p>
+			<input name="btnEn" onclick="Vernam_Encrypt()" type="button" value="v Encrypt v">
+			<input name="btnDe" onclick="Vernam_Decrypt()" type="button" value="^ Decrypt ^">
+		</p>
+
+		<p>
+			Ciphertext<br/>
+
+			<textarea cols="50" id="c" name="c" rows="2">
+				
+			</textarea>
+			<br/>
+		</p>
+
+	</div>
+
+
+</body>
+
+</html>
