@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+
+</head>
+<body>
+
+
+		<!-- Second section (The vernon cipher) of the experiment -->		
+		<h2>
+			Simulator
+		</h2>
+		<hr/><br/>
+
+		<p>
+			plaintext
+			<br/>
+			<form method="POST" action="{{url_for('index')}}" >
+
+		        {{ form1.fullName.label }} {{ form1.fullName }}
+
+		        {{ form1.dept.label }} {{ form1.dept }}
+
+		        <input type="submit" value="Submit">
+		        
+		        <h5>
+		            {{ form1.fullName.data }}
+		            {{ form1.dept.data }}
+		        </h5>
+
+    		</form>
+			<textarea cols="25" id="p" name="p" rows="1">
+				10010011000110
+			</textarea>
+			<br/>
+		</p>
+		<p>
+			key =
+			
+			<input id="key" maxchars="25" name="key" size="25" type="text" value="1010110 0110001"/>
+			<input name="genKey" onclick="Vernam_RandKey()" type="button" value="Generate Random Key"/>
+		</p>
+		<p>
+			<input name="btnEn" onclick="Vernam_Encrypt()" type="button" value="v Encrypt v">
+			<input name="btnDe" onclick="Vernam_Decrypt()" type="button" value="^ Decrypt ^">
+		</p>
+
+		<p>
+			Ciphertext<br/>
+
+			<textarea cols="50" id="c" name="c" rows="2">
+				
+			</textarea>
+			<br/>
+		</p>
+
+	</div>
+
+
+</body>
+
+</html>
