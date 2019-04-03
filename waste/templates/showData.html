@@ -1,0 +1,15 @@
+<html>
+    <head> 
+    </head> 
+    <body>
+        {% if form1 %}
+        <h2> Employee Details </h2>
+            {{ form1.fullName.data }}
+            {{ form1.dept.data }}
+        {% endif %}
+        {% if form %}
+            <h2> Company Details </h2>
+                {{ form.yearsOfExp.data }}      
+        {% endif %}     
+    </body>
+</html>
