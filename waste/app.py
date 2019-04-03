@@ -30,10 +30,10 @@ def index():
     employeeInfo = EmployeeInfo()
 
     if companydetails.validate_on_submit():
-        return render_template('showData.html', form = companydetails)
+        return render_template('index.html', form = companydetails,form1 = employeeInfo)
 
     if employeeInfo.validate_on_submit():
-        return render_template('showData.html', form1 = employeeInfo)   
+        return render_template('index.html', form1 = employeeInfo,form = companydetails)   
 
     return render_template('index.html',form1 = employeeInfo, form = companydetails)
 
