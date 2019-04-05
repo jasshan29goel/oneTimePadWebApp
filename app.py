@@ -1,75 +1,67 @@
-from flask import Flask, render_template, request
-from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, FloatField, validators,TextField
-from wtforms.validators import InputRequired
+from flask import Flask,request,render_template,jsonify
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'Thisisasecret'
 
-class Answer(FlaskForm):
-    """
-    Answer class will have response, m1, m2
-    """
-    response = StringField('Yes/No',[validators.InputRequired()]) 
-    m1 = IntegerField('m1',[validators.InputRequired()]) 
-    m2 = IntegerField('m2',[validators.InputRequired()])
-class Vernam(FlaskForm):
-    """
-    vernam class will have Plaintext and key
-    """
-    plaintext = IntegerField('Plain Text',[validators.InputRequired()], default="10010011000110") 
-    key = IntegerField('Key',[validators.InputRequired()], default="10101100110001") 
-    ciphertext = IntegerField('Ciphertext')
-class Form_1(FlaskForm):
-    """
-    form1 class will have Plaintext and key
-    """
-    plaintext1 = IntegerField('Plain Text',[validators.InputRequired()], default="1101") 
-    key1 = IntegerField('Key',[validators.InputRequired()], default="100001") 
-    ciphertext1 = IntegerField('Ciphertext')
-
-class Form_2(FlaskForm):
-    """
-    form2 class will have Plaintext and key
-    """
-    key2= TextField('Key',[validators.InputRequired()], default="100001") 
-    pairs2 = TextField('Pairs')
-
-@app.route('/', methods = ['GET','POST'] )
+@app.route('/')
 def index():
-    """
-    View will render index.html page.
-    """
-    answer=Answer()
-    vernam = Vernam()
-    form_1=Form_1()
-    form_2=Form_2()
-    """
-    Temprorily printing plaintext in ciphertext vernam . Later on we can modify what we want to print. 
-    """
-    vernam.ciphertext=vernam.plaintext 
-    """
-    Temprorily printing plaintext +100 in ciphertext  . Later on we can modify what we want to print. 
-    """
-    form_1.ciphertext1.data=(int(form_1.plaintext1.data)+100) 
+    return render_template('test.html')
 
-    """
-    Temprorily printing key,key pair thrice  in ciphertext  . Later on we can modify what we want to print. 
-    """
 
-    form_2.pairs2.data=str(form_2.key2.data)+","+str(form_2.key2.data)+"\n"
-    form_2.pairs2.data+=str(form_2.key2.data)+","+str(form_2.key2.data)+"\n"
-    form_2.pairs2.data+=str(form_2.key2.data)+","+str(form_2.key2.data)+"\n"
+@app.route('/form1b3',methods= ['POST'])
+def form1b3():
+    plainText1 = request.form['plainText1']
+    key1 = request.form['key1']
+    output = str(int(plainText1) + int(key1))
+    if key1 and plainText1:
+        return jsonify({'output':output})
+    return jsonify({'error' : 'Missing data!'})
 
-    if vernam.validate_on_submit():
-        return render_template('test.html', form4 = vernam, form3 = answer,form1=form_1,form2=form_2)
-    if  answer.validate_on_submit():
-        return render_template('test.html', form4 = vernam, form3 = answer,form1=form_1,form2=form_2)
-    if  form_1.validate_on_submit():
-        return render_template('test.html', form4 = vernam, form3 = answer,form1=form_1,form2=form_2)
-    if  form_2.validate_on_submit():
-        return render_template('test.html', form4 = vernam, form3 = answer,form1=form_1,form2=form_2)
-    return render_template('test.html',form4 = vernam, form3 =answer,form1=form_1,form2=form_2)           
+@app.route('/form1b2',methods= ['POST'])
+def form1b2():
+    dummy = request.form['dummy']
+    if dummy :
+        return jsonify({'output':1000})
+    return jsonify({'error' : 'Missing data!'})
+
+@app.route('/form1b1',methods= ['POST'])
+def form1b1():
+    dummy = request.form['dummy']
+    if dummy :
+        return jsonify({'output':1000})
+    return jsonify({'error' : 'Missing data!'})
+
+@app.route('/form2b1',methods= ['POST'])
+def form2b1():
+    dummy = request.form['dummy']
+    if dummy :
+        return jsonify({'output':99999})
+    return jsonify({'error' : 'Missing data!'})
+
+@app.route('/form4a',methods= ['POST'])
+def form4a():
+    PlainText = request.form['PlainText']
+    Key = request.form['Key']
+    output = str(int(PlainText) ^ int(Key))
+    if PlainText and Key:
+        return jsonify({'output':output})
+    return jsonify({'error' : 'Missing data!'})
+
+
+@app.route('/form4b',methods= ['POST'])
+def form4b():
+    CypherText = request.form['CypherText']
+    Key = request.form['Key']
+    output = str(int(CypherText) ^ int(Key))
+    if CypherText and Key:
+        return jsonify({'output':output})
+    return jsonify({'error' : 'Missing data!'})
+@app.route('/form3',methods= ['POST'])
+def form3():
+    m1 = request.form['m1']
+    m2 = request.form['m2']
+    if m1 and m2:
+        return jsonify({'output':"Wow At Last you have done it"})
+    return jsonify({'error' : 'Missing data!'})
 
 if __name__ == '__main__':
-    app.run(debug= True, port =8092)
+    app.run(debug=True)

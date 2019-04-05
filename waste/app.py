@@ -12,7 +12,7 @@ class EmployeeInfo(FlaskForm):
     """
     fullName = StringField('Full Name',[validators.InputRequired()])
     dept = StringField('Department',[validators.InputRequired()])
-
+    
 class CompanyDetails(FlaskForm):
     """
     CompanyDetails will have yearOfExp. 

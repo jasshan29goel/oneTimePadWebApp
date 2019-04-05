@@ -1,5 +1,7 @@
 <html>
 <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>  
 
@@ -7,15 +9,13 @@
     <h1 class="text-h2-lightblue">
         Vernam Cipher and Perfect secrecy
     </h1>
-    <!--    Entire content of the Experiment--> 
+    <hr/>
     <div class="content" id="experiment-article-section-4-content">
-
-
-        <!-- First section of the Experiment--> 
 
         <h2>
             Testing Perfect Secrecy using Shannon's Theorem
         </h2>
+<hr/>
         
         <p>
             Is the following encryption scheme perfectly secure?
@@ -23,115 +23,224 @@
             Press "Next Plaintext" method to get more pairs.
         </p>
 
-        <form method="POST" action="{{url_for('index')}}" >
-
-            <p>
-                Plaintext {{ form1.plaintext1 }}
-            </p>
-
-            <p>
-                Key {{ form1.key1 }}
-            </p>
-
-            <p>
-                <input type="submit" value="Encrypt"/>
-            </p>
-
-            <p>
-                Cyphertext
-                <br/><br/>
-                <input value="{{ form1.ciphertext1.data }}"/>
-            </p>
-
-        </form>
 
 
 
+        <form >
+          <p>
+          <label for="plainText1">Plaintext</label>
+          <input id="plainText1" />
+          <button id="nextPlainText1" >Next Plaintext</button>
+          </p>
+          <p>
+          <label for="key1">Key</label>
+          <input id="key1" />
+          <button id="nextKey1" >Next Key</button>
+          </p>
+          <button id="encrypt1" >Encrypt</button>
+          <p>
+          <label for="cipher1">Cipher Text</label>
+          <input id="cipher1" />
+          </p>
+      </form>
+
+
+
+
+      <p>
+        For all the possible pairs of plaintext of
+        size 8, and the key given by you, we will provide you with the
+        encrypted texts with the same encryption scheme. You can observe the
+        input and try to break it. <br>Put your key here (between size 6 and 12): 
+        <br/>
+    </p> 
+
+
+     
+    <form >
         <p>
-            For all the possible pairs of plaintext of
-            size 8, and the key given by you, we will provide you with the
-            encrypted texts with the same encryption scheme. You can observe the
-            input and try to break it. <br>Put your key here (between size 6 and 12): 
-            <br/>
-        </p> 
-
-        <form method="POST" action="{{url_for('index')}}" >
-
-
-            <p>
-                Key {{ form2.key2 }}
-            </p>
-
-            <p>
-                <input type="submit" value="Encryption Set"/>
-            </p>
-
-            <p>
-                Multiple tuples of &lt;Plaintext, Ciphertext&gt;:
-                <br/><br/>
-                <textarea cols="50" id="textarea2" name="textarea" rows="8">
-                    {{ form2.pairs2.data }}
-                </textarea>
-            </p>
-
-        </form>
-
-
-        <h2>
+           <button id="encrypt2" >Encryption set</button>
+         </p> 
+            Multiple tuples of &lt;Plaintext, Ciphertext&gt;:
+          <br/>
+          <br/>
+        <textarea id="pair2"></textarea>
+      </form>
+       <h2>
             Is the given encryption scheme secure?
         </h2>
         <hr/>
-
-        <form method="POST" action="{{url_for('index')}}" >
-
-            <p>
-                {{ form3.response.label }} <br>
-                {{ form3.response }}
-            </p>
-            <p>
+  <form>
+      <p>
+      <label  for="response3">Yes/No</label>
+      <input type="text"  id="response3" >
+      </p>
+      <p>
                 If NO, Give two plaintexts 'm1' and 'm2' for the above key such that Encryption(m1) = Encryption(m2)?
-            </p>
-            <p>
-                {{ form3.m1.label }}
-                {{ form3.m1 }}
-            </p>
-            <p>
-                {{ form3.m2.label }}
-                {{ form3.m2 }}
-            </p>
-            <p>
-                <input type="submit" value="Check Answer"/>
-            </p>
-        </form>
+      </p>
+      <p>
+      <label class="sr-only" for="m13">m1</label>
+      <input type="text" class="form-control" id="m13" >
+      </p>
+      <p>
+ 
+      <label class="sr-only" for="m23">m2</label>
+      <input type="text" class="form-control" id="m23" >
+      </p>
+      <p>
+    <p>
+          <button   id="CheckAnswer3" >Check Answer</button>  
+    </p>
+  </form>
+  </br>
+  <h2>
+      Simulator
+  </h2>
+  <hr/><br/>
+  <form class="form-inline">
+      <p>
+      <label class="sr-only" for="PlainText4">PlainText</label>
+      <input type="text" class="form-control" id="PlainText4" >
+      </p>
+      <p>
+      <label class="sr-only" for="Key4">Key</label>
+      <input type="text" class="form-control" id="Key4" >
+      </p>
+      <p>
+        <button   id="Encrypt4" >Encrypt</button>
+        <button   id="Decrypt4" >Decrypt</button>
+      </p>
+    <p>
+        <label class="sr-only" for="CypherText4">CypherText</label>
+      <br>
+      <input type="text" class="form-control" id="CypherText4" >
+    
+    </p>
+  </form>
 
-        <h2>
-            Simulator
-        </h2>
-        <hr/><br/>
-        <form method="POST" action="{{url_for('index')}}" >
 
-            <p>
-                {{ form4.plaintext.label }} {{ form4.plaintext }}
-            </p>
-
-            <p>
-                {{ form4.key.label }} {{ form4.key }}
-                <input type="button" value="Generate Random Key">
-            </p>
-
-            <p>
-                <input type="submit" value="Encrypt">
-                <input type="button" value="Decrypt">
-            </p>
-
-            <p>
-                <!-- {{ form4.ciphertext.label }} -->
-                Cyphertext
-                <br/><br/>
-                {{ form4.ciphertext }}
-            </p>
-
-        </form>
-    </div>
+</div>
 </body>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+     $("#encrypt1").click(function(event){
+      $.ajax({
+        data : {
+          plainText1 : $('#plainText1').val(),
+          key1 : $('#key1').val(),
+        },
+        type : 'POST',
+        url : '/form1b3'
+      })
+      .done(function(data) {
+        // $('#output').text(data.output).show();
+        document.getElementById("cipher1").value=data.output 
+      // document.getElementById("firstName").innerHTML = data.output
+      });
+      event.preventDefault();
+    });
+
+
+     $("#nextKey1").click(function(event){
+      $.ajax({
+        data : {
+          dummy : "10",
+        },
+        type : 'POST',
+        url : '/form1b2'
+      })
+      .done(function(data) {
+        // $('#output').text(data.output).show();
+        document.getElementById("key1").value=data.output 
+      // document.getElementById("firstName").innerHTML = data.output
+      });
+      event.preventDefault();
+    });
+
+$("#nextPlainText1").click(function(event){
+      $.ajax({
+        data : {
+          dummy : "10",
+        },
+        type : 'POST',
+        url : '/form1b1'
+      })
+      .done(function(data) {
+        // $('#output').text(data.output).show();
+        document.getElementById("plainText1").value=data.output 
+      // document.getElementById("firstName").innerHTML = data.output
+      });
+      event.preventDefault();
+    });
+
+
+
+$("#encrypt2").click(function(event){
+      $.ajax({
+        data : {
+          dummy : "10",
+        },
+        type : 'POST',
+        url : '/form2b1'
+      })
+      .done(function(data) {
+        // $('#output').text(data.output).show();
+        document.getElementById("pair2").value=data.output 
+      // document.getElementById("firstName").innerHTML = data.output
+      });
+      event.preventDefault();
+    });
+    $("#Encrypt4").click(function(event){
+      $.ajax({
+        data : {
+          PlainText : $('#PlainText4').val(),
+          Key: $('#Key4').val(),
+        },
+        type : 'POST',
+        url : '/form4a'
+      })
+      .done(function(data) {
+        // $('#output').text(data.output).show();
+      document.getElementById("CypherText4").value=data.output 
+        
+      });
+      event.preventDefault();
+    });
+    $("#Decrypt4").click(function(event){
+      $.ajax({
+        data : {
+          CypherText : $('#CypherText4').val(),
+          Key: $('#Key4').val(),
+        },
+        type : 'POST',
+        url : '/form4b'
+      })
+      .done(function(data) {
+        $('#output').text(data.output).show();
+      document.getElementById("PlainText4").value=data.output 
+        
+      });
+      event.preventDefault();
+    });
+    $("#CheckAnswer3").click(function(event){
+      $.ajax({
+        data : {
+          m1 : $('#m13').val(),
+          m2: $('#m23').val(),
+        },
+        type : 'POST',
+        url : '/form3'
+      })
+      .done(function(data) {
+        // $('#output').text(data.output).show();
+       document.getElementById("CypherText4").value=data.output 
+        
+      });
+      event.preventDefault();
+    });
+  });
+</script>
+
+
 </html>
