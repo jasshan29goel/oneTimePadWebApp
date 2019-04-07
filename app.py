@@ -22,11 +22,36 @@ class text_key(db.Model):
         return '<User %r>' % self.plainText
 
 
-
 @app.route('/')
-def index():
-    return render_template('test.html')
-
+def Root():
+    return render_template("Introduction.html")
+@app.route('/Introduction.html')
+def Introduction():
+    return render_template("Introduction.html")
+@app.route('/Objective.html')
+def Objective():
+    return render_template("Objective.html")
+@app.route('/Experiment.html')
+def Experiment():
+    return render_template("Experiment.html")
+@app.route('/Theory.html')
+def Theory():
+    return render_template('Theory.html')
+@app.route('/Manual.html')
+def Manual():
+    return render_template('Manual.html')
+@app.route('/Quizzes.html')
+def Quizzes():
+    return render_template('Quizzes.html')
+@app.route('/Procedure.html')
+def Procedure():
+    return render_template('Procedure.html')
+@app.route('/Further Readings.html')
+def Further():
+    return render_template('Further Readings.html')    
+@app.route('/Feedback.html')
+def Feedback():
+    return render_template('Feedback.html')
 
 @app.route('/form1b3',methods= ['POST'])
 def form1b3():

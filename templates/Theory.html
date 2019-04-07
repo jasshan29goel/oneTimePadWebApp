@@ -93,107 +93,38 @@
 					<div class="row">
 						<div class="col-md-2 sidebar-col-2">
 						<!--edit1-->
-<a href="Introduction.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Introduction</h3></a><a href="Theory.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Theory</h3></a><a href="Objective.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Objective</h3></a><a href="Experiment.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Experiment</h3></a><a href="Manual.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Manual</h3></a><a href="Quizzes.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Quizzes</h3></a><a href="Procedure.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Procedure</h3></a><a href="Further Readings.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Further Readings</h3></a><a href="Feedback.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Feedback</h3></a>						</div>
+<a href="Introduction.html" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Introduction</h3></a><a href="Theory.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Theory</h3></a><a href="Objective.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Objective</h3></a><a href="Experiment.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Experiment</h3></a><a href="Manual.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Manual</h3></a><a href="Quizzes.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Quizzes</h3></a><a href="Procedure.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Procedure</h3></a><a href="Further Readings.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Further Readings</h3></a><a href="Feedback.html?domain=Computer Science&lab=Cryptograpy Lab" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">Feedback</h3></a>						</div>
 						
 						<div class="col-md-10 lab-list-col-10">
 							
 							<!--edit -->
-<h1 class="text-h2-lightblue">Vernam Cipher and Perfect secrecy</h1><div class="content" id="experiment-article-section-4-content">
-<h2>Testing Perfect Secrecy using Shannon's Theorem<br>
-</br></h2>
+<h1 class="text-h2-lightblue">Vernam Cipher and Perfect secrecy</h1><div class="content" id="experiment-article-section-2-content">
 <p>
-			Is the following encryption scheme perfectly secure?
-			You can observe as many encrypted text and key pairs as you wish.
-			Press "Next Plaintext" method to get more pairs.</p>
-<form >
-          <p>
-          <label for="plainText1">Plaintext</label>
-          <input id="plainText1" />
-          <button id="nextPlainText1" >Next Plaintext</button>
-          </p>
-          <p>
-          <label for="key1">Key</label>
-          <input id="key1" />
-          <button id="nextKey1" >Next Key</button>
-          </p>
-          <button id="encrypt1" >Encrypt</button>
-          <p>
-          <label for="cipher1">Cipher Text</label>
-          <input id="cipher1" />
-          </p>
-      </form>
-<p>For all the possible pairs of plaintext of
-size 8, and the key given by you, we will provide you with the
-encrypted texts with the same encryption scheme. You can observe the
-input and try to break it. <br>Put your key here (between size 6 and 12): </br></p> <form >
-        <p>
-           <button id="encrypt2" >Encryption set</button>
-         </p> 
-            Multiple tuples of &lt;Plaintext, Ciphertext&gt;:
-          <br/>
-          <br/>
-        <textarea id="pair2"></textarea>
-      </form>
-       <h2>
-            Is the given encryption scheme secure?
-        </h2>
-        <hr/>
-  <form>
-      <p>
-      <label  for="response3">Yes/No</label>
-      <input type="text"  id="response3" >
-      </p>
-      <p>
-                If NO, Give two plaintexts 'm1' and 'm2' for the above key such that Encryption(m1) = Encryption(m2)?
-      </p>
-      <p>
-      <label class="sr-only" for="m13">m1</label>
-      <input type="text"  id="m13" >
-      </p>
-      <p>
- 
-      <label class="sr-only" for="m23">m2</label>
-      <input type="text" id="m23" >
-      </p>
-      <p>
-    <p>
-          <button   id="CheckAnswer3" >Check Answer</button>  
-    </p>
-  </form>
-  </br>
-
- <h2>
-      Simulator
-  </h2>
-  <hr/><br/>
-  <form class="form-inline">
-      <p>
-      <label class="sr-only" for="PlainText4">PlainText</label>
-      <input type="text"  id="PlainText4" >
-      </p>
-      <p>
-      <label class="sr-only" for="Key4">Key</label>
-      <input type="text"  id="Key4" >
-      </p>
-      <p>
-        <button   id="Encrypt4" >Encrypt</button>
-        <button   id="Decrypt4" >Decrypt</button>
-      </p>
-    <p>
-        <label class="sr-only" for="CypherText4">CypherText</label>
-      <br>
-      <input type="text"  id="CypherText4" >
-    
-    </p>
-  </form>
-
-
-</div>
-</body>
+	Vernam proposed a bit-wise exclusive or of the message stream with a
+	truely random zero-one stream which was shared by sender and receipient.
+	</p>
+<pre>
+	Example:<br><br>   SENDING<br>   -------<br>   message: 0 0 1 0 1 1 0 1 0 1 1 1 ...<br>   pad:     1 0 0 1 1 1 0 0 1 0 1 1 ...<br>   XOR      ---------------------------<br>   cipher:  1 0 1 1 0 0 0 1 1 1 0 0 ...<br><br>   RECEIVING<br>   ---------<br>   cipher:  1 0 1 1 0 0 0 1 1 1 0 0 ...<br>   pad:     1 0 0 1 1 1 0 0 1 0 1 1 ...<br>   XOR      ---------------------------<br>   message: 0 0 1 0 1 1 0 1 0 1 1 1 ...<br>
+	</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></pre><br><br>
+<p>
+	This cipher is unbreakable in a very strong sense. The intuition is
+	that any message can be transformed into any cipher (of the same
+	length) by a pad, and all transformations are equally likely. Given a
+	two letter message, there is a pad which adds to the message to give
+	OK, and another pad which adds to the message to give NO. Since either
+	of these pads are equally likely, the message is equally likely to be
+	OK or NO.
+	</p>
+<p>
+	For more details on the topic, click <a href="media/lec1.pdf">here</a><br>
+</br></p>
+</br></br></div>						</div>
+					</div>
+			</div>
 			<!-- =================================================================================================================================== -->
 
 
-		</p></form></div></div>
+
 			
 	</div> <!-- content div -->
 		
@@ -226,8 +157,8 @@ input and try to break it. <br>Put your key here (between size 6 and 12): </br><
 			
 			<div class="col-md-2 border-right-green-dotted" >
 				<h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;"> Follow us</h2>
-				<a href="https://www.facebook.com/pages/Virtual-Labs-IIT-Delhi/301510159983871" class="text-a-lightgreen nounderline"   target="_blank"> <img src="../static/images/social/fb.png"  style="border-radius: 50%;"/> </a>
-				<a href="https://twitter.com/TheVirtualLabs" class="text-a-lightgreen nounderline"   target="_blank"> <img src="../static/images/social/twitter.png"  style="border-radius: 50%;"/></a>
+				<a href="https://www.facebook.com/pages/Virtual-Labs-IIT-Delhi/301510159983871" class="text-a-lightgreen nounderline"   target="_blank"> <img src="../../../images/social/fb.png"  style="border-radius: 50%;"/> </a>
+				<a href="https://twitter.com/TheVirtualLabs" class="text-a-lightgreen nounderline"   target="_blank"> <img src="../../../images/social/twitter.png"  style="border-radius: 50%;"/></a>
 				
 			</div>
 			
@@ -254,121 +185,6 @@ input and try to break it. <br>Put your key here (between size 6 and 12): </br><
 	
 	<script type="text/javascript">
 	$(document).ready(function() {
-		$("#encrypt1").click(function(event){
-      $.ajax({
-        data : {
-          plainText1 : $('#plainText1').val(),
-          key1 : $('#key1').val(),
-        },
-        type : 'POST',
-        url : '/form1b3'
-      })
-      .done(function(data) {
-        // $('#output').text(data.output).show();
-        document.getElementById("cipher1").value=data.output 
-      // document.getElementById("firstName").innerHTML = data.output
-      });
-      event.preventDefault();
-    });
-
-
-     $("#nextKey1").click(function(event){
-      $.ajax({
-        data : {
-          dummy : "10",
-        },
-        type : 'POST',
-        url : '/form1b2'
-      })
-      .done(function(data) {
-        // $('#output').text(data.output).show();
-        document.getElementById("key1").value=data.output 
-      // document.getElementById("firstName").innerHTML = data.output
-      });
-      event.preventDefault();
-    });
-
-$("#nextPlainText1").click(function(event){
-      $.ajax({
-        data : {
-          dummy : "10",
-        },
-        type : 'POST',
-        url : '/form1b1'
-      })
-      .done(function(data) {
-        // $('#output').text(data.output).show();
-        document.getElementById("plainText1").value=data.output 
-      // document.getElementById("firstName").innerHTML = data.output
-      });
-      event.preventDefault();
-    });
-
-
-
-$("#encrypt2").click(function(event){
-      $.ajax({
-        data : {
-          dummy : "10",
-        },
-        type : 'POST',
-        url : '/form2b1'
-      })
-      .done(function(data) {
-        // $('#output').text(data.output).show();
-        document.getElementById("pair2").value=data.output 
-      // document.getElementById("firstName").innerHTML = data.output
-      });
-      event.preventDefault();
-    });
-    $("#Encrypt4").click(function(event){
-      $.ajax({
-        data : {
-          PlainText : $('#PlainText4').val(),
-          Key: $('#Key4').val(),
-        },
-        type : 'POST',
-        url : '/form4a'
-      })
-      .done(function(data) {
-        // $('#output').text(data.output).show();
-      document.getElementById("CypherText4").value=data.output 
-        
-      });
-      event.preventDefault();
-    });
-    $("#Decrypt4").click(function(event){
-      $.ajax({
-        data : {
-          CypherText : $('#CypherText4').val(),
-          Key: $('#Key4').val(),
-        },
-        type : 'POST',
-        url : '/form4b'
-      })
-      .done(function(data) {
-        $('#output').text(data.output).show();
-      document.getElementById("PlainText4").value=data.output 
-        
-      });
-      event.preventDefault();
-    });
-    $("#CheckAnswer3").click(function(event){
-      $.ajax({
-        data : {
-          m1 : $('#m13').val(),
-          m2: $('#m23').val(),
-        },
-        type : 'POST',
-        url : '/form3'
-      })
-      .done(function(data) {
-        // $('#output').text(data.output).show();
-       document.getElementById("CypherText4").value=data.output 
-        
-      });
-      event.preventDefault();
-    });
 		 
 		  var owl = $("#owl-demo");
 		  owl.owlCarousel({
@@ -402,7 +218,6 @@ $("#encrypt2").click(function(event){
 	      navigation: true,
 	      singleItem:true
 	  });
-
 	 
 	});
 	</script>
