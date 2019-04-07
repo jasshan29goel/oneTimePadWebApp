@@ -58,13 +58,8 @@ def form1b3():
     plainText1 = request.form['plainText1']
     key1 = request.form['key1']
 
-	# adding plaintext and key pair to the database
-    addInDb(plainText1,key1)
+    return vernam_cipher(plainText1,key1)
 
-    output = str(int(plainText1) + int(key1))
-    if key1 and plainText1:
-        return jsonify({'output':output})
-    return jsonify({'error' : 'Missing data!'})
 
 @app.route('/form1b2',methods= ['POST'])
 def form1b2():
@@ -92,23 +87,16 @@ def form4a():
     PlainText = request.form['PlainText']
     Key = request.form['Key']
 
-	# adding plaintext and key pair to the database
-    addInDb(PlainText,Key)
-
-    output = str(int(PlainText) ^ int(Key))
-    if PlainText and Key:
-        return jsonify({'output':output})
-    return jsonify({'error' : 'Missing data!'})
+    return vernam_cipher(PlainText,Key)
 
 
 @app.route('/form4b',methods= ['POST'])
 def form4b():
     CypherText = request.form['CypherText']
     Key = request.form['Key']
-    output = str(int(CypherText) ^ int(Key))
-    if CypherText and Key:
-        return jsonify({'output':output})
-    return jsonify({'error' : 'Missing data!'})
+
+    return vernam_cipher(CypherText,Key)
+
 @app.route('/form3',methods= ['POST'])
 def form3():
     m1 = request.form['m1']
@@ -141,6 +129,46 @@ def userFetch():
         diction["pairs"].append({"plaintext":x.plainText,"key":x.key})
         # strf += str(x.rollnumber)+" "+x.name+" "+x.email + "\n"
     return jsonify(diction)
+
+
+# function to check whether the text passed as parameter consists of something other than the binary bits
+# if it consists of something else then the function will return 0 else it will return 1
+# example usage a=check_valid_text("100010") :: here a = 1
+# example usage a=check_valid_text("102010") :: here a = 0
+
+def check_valid_text(text):
+	for x in text:
+		if x!='1' and x!='0':
+			return 0
+	return 1
+# function to calculate xor of two characters
+def xor(a, b):
+    if a == '0' and b == '0':
+        return "0" 
+    if a == '0' and b == '1':
+        return "1" 
+    if a == '1' and b == '0':
+        return "1" 
+    if a == '1' and b == '1':
+        return "0" 
+# overall function to check the validity of plain text and cipher text in vernam cipher 
+# it displays the appropriate text message 
+# if valid the function automatically commits to the database also
+def vernam_cipher(plaintext,key):
+	if key and plaintext:
+		if check_valid_text(plaintext) and check_valid_text(key):
+			if len(plaintext)<=len(key):
+				# adding plaintext and key pair to the database
+				addInDb(plaintext,key)
+				# calculating the output by calling the xor funciton repetedly
+				output=""
+				for i in range(0,len(plaintext)):
+					output+=xor(plaintext[i],key[i])
+				return jsonify({'output':output})
+			return jsonify({'output':"Length of key >= PlainText!"})	
+		return jsonify({'output':"Enter binary string!"})	
+	return jsonify({'output':"Missing data!"})	
+
 
 if __name__ == '__main__':
     app.run(debug=True)
