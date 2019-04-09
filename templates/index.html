@@ -16,10 +16,10 @@
 	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 
 	<!-- Important Owl stylesheet -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static' ,filename='css/owl.theme.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendors/owl-carousel/owl.carousel.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static' ,filename='vendors/owl-carousel/owl.theme.css') }}">
 
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendors/font-awesome/css/font-awesome.css') }}">
 
 	<!-- Custom CSS -->
 	<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
@@ -199,7 +199,7 @@
 
 			</div>
 
-			<div class="col-md-2 border-right-green-dotted" >
+			<!-- <div class="col-md-2 border-right-green-dotted" >
 
 				<h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;"> Follow us</h2>
 
@@ -211,7 +211,7 @@
 
 				<p><a href="https://www.youtube.com/watch?v=mVBYNXLaDdg" class="text-a-lightgreen nounderline" target="_blank" > <img src="{{ url_for('static', filename='images/youtube.png') }}" style="border-radius: 50%; width: 38px; height: 38px" /></a></p>
 
-			</div>
+			</div> -->
 
 		</div>
 
@@ -241,7 +241,7 @@
 		  owl.owlCarousel({
 			  navigation: true,
 			  navigationText: [
-								`<img src="{{ url_for('static', filename='images/left-arrow.png') }}">`,
+			 						`<img src="{{ url_for('static', filename='images/left-arrow.png') }}">`,
 								`<img src="{{ url_for('static', filename='images/right-arrow.png') }}">`
 							   ],
 			  /* autoPlay : 3000,
