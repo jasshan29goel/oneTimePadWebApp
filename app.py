@@ -8,6 +8,16 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
+
+
+class binaryString(object):
+    """docstring for binaryString"""
+    def __init__(self, arg):
+        self.arg = arg
+        
+
+
+
 # database element class
 class text_key(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -46,7 +56,7 @@ def Quizzes():
 @app.route('/Procedure.html')
 def Procedure():
     return render_template('Procedure.html')
-@app.route('/Further Readings.html')
+@app.route('/Further.html')
 def Further():
     return render_template('Further Readings.html')    
 @app.route('/Feedback.html')
