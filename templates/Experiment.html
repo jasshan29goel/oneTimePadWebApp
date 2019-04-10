@@ -24,13 +24,21 @@
           <input id="cipher1" />
           </p>
       </form>
+  <p>
+           <button id="nextencryptionscheme" >Next Encryption Scheme</button>
+        </p>
 <p>For all the possible pairs of plaintext of
 size 8, and the key given by you, we will provide you with the
 encrypted texts with the same encryption scheme. You can observe the
 input and try to break it. <br>Put your key here (between size 6 and 12): </br></p> <form >
         <p>
-           <button id="encrypt2" >Encryption set</button>
-         </p> 
+           <button id="encryptionset" >Encryption set</button>
+           
+         </p>
+         <p>
+         <label for="key2">Key</label>
+          <input id="key2" />
+        </p> 
             Multiple tuples of &lt;Plaintext, Ciphertext&gt;:
           <br/>
           <br/>
@@ -126,7 +134,7 @@ input and try to break it. <br>Put your key here (between size 6 and 12): </br><
      $("#nextKey1").click(function(event){
       $.ajax({
         data : {
-          dummy : "10",
+          plainText1 : $('#plainText1').val(),
         },
         type : 'POST',
         url : '/form1b2'
@@ -141,9 +149,7 @@ input and try to break it. <br>Put your key here (between size 6 and 12): </br><
 
 $("#nextPlainText1").click(function(event){
       $.ajax({
-        data : {
-          dummy : "10",
-        },
+        
         type : 'POST',
         url : '/form1b1'
       })
@@ -154,24 +160,11 @@ $("#nextPlainText1").click(function(event){
       });
       event.preventDefault();
     });
+ 
 
 
 
-$("#encrypt2").click(function(event){
-      $.ajax({
-        data : {
-          dummy : "10",
-        },
-        type : 'POST',
-        url : '/form2b1'
-      })
-      .done(function(data) {
-        // $('#output').text(data.output).show();
-        document.getElementById("pair2").value=data.output 
-      // document.getElementById("firstName").innerHTML = data.output
-      });
-      event.preventDefault();
-    });
+
     $("#Encrypt4").click(function(event){
       $.ajax({
         data : {

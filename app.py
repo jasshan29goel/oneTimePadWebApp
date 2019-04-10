@@ -1,5 +1,7 @@
 from flask import Flask,request,render_template,jsonify
 from flask_sqlalchemy import SQLAlchemy
+import random
+import itertools
 
 app = Flask(__name__)
 
@@ -8,6 +10,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///text.db'
+text = SQLAlchemy(app)
 
 class Error(Exception):
    """Base class for other exceptions"""
@@ -22,8 +26,15 @@ class KeyToSmallError(Error):
    """Raised when the input value is Null"""
    pass
 
+def randomNumberGenerator(arg):
 
-
+    stri=""
+    if arg==0:
+        arg=8
+    for x in range(arg):
+        stri+=str(random.randint(0,1))
+    return stri
+currentEncryptionScheme=randomNumberGenerator(100)
 class binaryString(object):
     def __init__(self, text):
         if not text : 	
@@ -41,7 +52,21 @@ class binaryString(object):
         for i in range(0,len(self.text)):
             output+=xor(self.text[i],new.text[i])
        	return output
+    def __mod__(self,new):
+        if len(self.text) > len(new.text):
+            raise KeyToSmallError
+        addInDb(self.text,new.text)
+        output=""
+        for i in range(0,len(self.text)):
+            if currentEncryptionScheme[i]=='0':  
+               # print("xor")  
+               output+=xor(self.text[i],new.text[i])
+            else:
+               # print("And")  
 
+               output+=And(self.text[i],new.text[i])
+        return output
+    
         
 
 
@@ -59,6 +84,15 @@ class text_key(db.Model):
     def __repr__(self):
         return '<User %r>' % self.plainText
 
+class combos(text.Model):
+    id = text.Column(text.Integer, primary_key=True)
+    plainText = text.Column(text.String)
+
+    def __init__(self,plainText):
+        self.plainText = plainText
+
+    def __repr__(self):
+        return '<User %r>' % self.plainText
 
 @app.route('/')
 def Root():
@@ -95,30 +129,44 @@ def Feedback():
 def form1b3():
     plainText1 = request.form['plainText1']
     key1 = request.form['key1']
-
-    return vernam_cipher(plainText1,key1)
-
+    try:
+        text1=binaryString(plainText1)
+        text2=binaryString(key1)
+        output=text1%text2
+        return jsonify({'output':output})   
+    except NullError:
+        return jsonify({'output':"Missing data!"})  
+    except BinaryError:
+        return jsonify({'output':"Enter binary string!"})   
+    except KeyToSmallError:
+        return jsonify({'output':"Key too small!"})
 
 @app.route('/form1b2',methods= ['POST'])
 def form1b2():
-    dummy = request.form['dummy']
-    if dummy :
-        return jsonify({'output':1000})
-    return jsonify({'error' : 'Missing data!'})
+    plainText1 = request.form['plainText1']
+    return jsonify({'output':randomNumberGenerator(len(plainText1))})
+
 
 @app.route('/form1b1',methods= ['POST'])
 def form1b1():
-    dummy = request.form['dummy']
-    if dummy :
-        return jsonify({'output':1000})
-    return jsonify({'error' : 'Missing data!'})
+    key = request.form['key1']
+    return jsonify({'output':randomNumberGenerator(len(key))})
+
+
+@app.route('/form1b4',methods= ['POST'])
+def form1b4():
+    global currentEncryptionScheme
+    currentEncryptionScheme=randomNumberGenerator(80)
+    return "0"
 
 @app.route('/form2b1',methods= ['POST'])
 def form2b1():
-    dummy = request.form['dummy']
-    if dummy :
-        return jsonify({'output':99999})
-    return jsonify({'error' : 'Missing data!'})
+    key = request.form['key2']
+    if key :
+        output=""
+        
+        return jsonify({'output' : output}) 
+    return jsonify({'output' : 'Missing data!'})
 
 @app.route('/form4a',methods= ['POST'])
 def form4a():
@@ -176,6 +224,12 @@ def addInDb(plaintext,key):
     	new_item=text_key(plaintext,key)
     	db.session.add(new_item)
     	db.session.commit()
+# def addintext(plaintext):
+#     text.create_all()
+#     allUsers=combos.query.all()
+#     new_item=combos(plaintext)
+#     text.session.add(new_item)
+#     text.session.commit()
 
 # temporary function to view what is stored in the database
 @app.route("/view")
@@ -189,8 +243,6 @@ def userFetch():
     return jsonify(diction)
 
 
-# function to check whether the text passed as parameter consists of something other than the binary bits
-# if it consists of something else then the function will return 0 else it will return 1
 def check_valid_text(text):
 	for x in text:
 		if x!='1' and x!='0':
@@ -206,6 +258,15 @@ def xor(a, b):
         return "1" 
     if a == '1' and b == '1':
         return "0" 
+def And(a, b):
+    if a == '0' and b == '0':
+        return "0" 
+    if a == '0' and b == '1':
+        return "0" 
+    if a == '1' and b == '0':
+        return "0" 
+    if a == '1' and b == '1':
+        return "1" 
 
 
 if __name__ == '__main__':
