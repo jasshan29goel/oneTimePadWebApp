@@ -9,11 +9,39 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
 
+class Error(Exception):
+   """Base class for other exceptions"""
+   pass
+class NullError(Error):
+   """Raised when the input value is Null"""
+   pass
+class BinaryError(Error):
+   """Raised when the input value is Null"""
+   pass
+class KeyToSmallError(Error):
+   """Raised when the input value is Null"""
+   pass
+
+
 
 class binaryString(object):
-    """docstring for binaryString"""
-    def __init__(self, arg):
-        self.arg = arg
+    def __init__(self, text):
+        if not text : 	
+            raise NullError
+        if not check_valid_text(text) : 
+            raise BinaryError
+        self.text = text
+
+	# new should be the key and self can be plaintext or ciphertext
+    def __xor__(self,new):
+        if len(self.text) > len(new.text):
+        	raise KeyToSmallError
+        addInDb(self.text,new.text)
+        output=""
+        for i in range(0,len(self.text)):
+            output+=xor(self.text[i],new.text[i])
+       	return output
+
         
 
 
@@ -97,7 +125,17 @@ def form4a():
     PlainText = request.form['PlainText']
     Key = request.form['Key']
 
-    return vernam_cipher(PlainText,Key)
+    try:
+	    text1=binaryString(PlainText)
+	    text2=binaryString(Key)
+	    output=text1^text2
+	    return jsonify({'output':output})	
+    except NullError:
+	    return jsonify({'output':"Missing data!"})	
+    except BinaryError:
+	    return jsonify({'output':"Enter binary string!"})	
+    except KeyToSmallError:
+	    return jsonify({'output':"Key too small!"})	
 
 
 @app.route('/form4b',methods= ['POST'])
@@ -105,7 +143,17 @@ def form4b():
     CypherText = request.form['CypherText']
     Key = request.form['Key']
 
-    return vernam_cipher(CypherText,Key)
+    try:
+	    text1=binaryString(CypherText)
+	    text2=binaryString(Key)
+	    output=text1^text2
+	    return jsonify({'output':output})	
+    except NullError:
+	    return jsonify({'output':"Missing data!"})	
+    except BinaryError:
+	    return jsonify({'output':"Enter binary string!"})	
+    except KeyToSmallError:
+	    return jsonify({'output':"Key too small!"})
 
 @app.route('/form3',methods= ['POST'])
 def form3():
@@ -143,9 +191,6 @@ def userFetch():
 
 # function to check whether the text passed as parameter consists of something other than the binary bits
 # if it consists of something else then the function will return 0 else it will return 1
-# example usage a=check_valid_text("100010") :: here a = 1
-# example usage a=check_valid_text("102010") :: here a = 0
-
 def check_valid_text(text):
 	for x in text:
 		if x!='1' and x!='0':
@@ -161,23 +206,6 @@ def xor(a, b):
         return "1" 
     if a == '1' and b == '1':
         return "0" 
-# overall function to check the validity of plain text and cipher text in vernam cipher 
-# it displays the appropriate text message 
-# if valid the function automatically commits to the database also
-def vernam_cipher(plaintext,key):
-	if key and plaintext:
-		if check_valid_text(plaintext) and check_valid_text(key):
-			if len(plaintext)<=len(key):
-				# adding plaintext and key pair to the database
-				addInDb(plaintext,key)
-				# calculating the output by calling the xor funciton repetedly
-				output=""
-				for i in range(0,len(plaintext)):
-					output+=xor(plaintext[i],key[i])
-				return jsonify({'output':output})
-			return jsonify({'output':"Length of key >= PlainText!"})	
-		return jsonify({'output':"Enter binary string!"})	
-	return jsonify({'output':"Missing data!"})	
 
 
 if __name__ == '__main__':
