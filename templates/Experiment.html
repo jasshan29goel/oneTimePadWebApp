@@ -149,7 +149,9 @@ input and try to break it. <br>Put your key here (between size 6 and 12): </br><
 
 $("#nextPlainText1").click(function(event){
       $.ajax({
-        
+        data : {
+          key1 : $('#key1').val(),
+        },
         type : 'POST',
         url : '/form1b1'
       })
@@ -160,10 +162,35 @@ $("#nextPlainText1").click(function(event){
       });
       event.preventDefault();
     });
- 
+  $("#nextencryptionscheme").click(function(event){
+      $.ajax({
+        data : {
+         dummy : 10,
+        },
+        type : 'POST',
+        url : '/form1b4'
+      })
+      
+      event.preventDefault();
+    });
 
 
-
+$("#encryptionset").click(function(event){
+      $.ajax({
+        data : {
+          
+         key2 : $('#key2').val(),
+        },
+        type : 'POST',
+        url : '/form2b1'
+      })
+      .done(function(data) {
+        // $('#output').text(data.output).show();
+        document.getElementById("pair2").value=data.output 
+      // document.getElementById("firstName").innerHTML = data.output
+      });
+      event.preventDefault();
+    });
 
     $("#Encrypt4").click(function(event){
       $.ajax({

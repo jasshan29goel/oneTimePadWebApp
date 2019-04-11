@@ -66,6 +66,19 @@ class binaryString(object):
 
                output+=And(self.text[i],new.text[i])
         return output
+    def __mul__(self,new):
+        if len(self.text) > len(new.text):
+            raise KeyToSmallError
+        output=""
+        for i in range(0,len(self.text)):
+            if currentEncryptionScheme[i]=='0':  
+               # print("xor")  
+               output+=xor(self.text[i],new.text[i])
+            else:
+               # print("And")  
+
+               output+=And(self.text[i],new.text[i])
+        return output
     
         
 
@@ -164,7 +177,13 @@ def form2b1():
     key = request.form['key2']
     if key :
         output=""
-        
+        text.create_all()
+        allUsers=combos.query.all()
+        for x in allUsers:
+            # addintext(i)
+            text1=binaryString(x.plainText)
+            text2=binaryString(key)
+            output+=x.plainText+","+text1*text2+"\n"
         return jsonify({'output' : output}) 
     return jsonify({'output' : 'Missing data!'})
 
@@ -242,7 +261,18 @@ def userFetch():
         # strf += str(x.rollnumber)+" "+x.name+" "+x.email + "\n"
     return jsonify(diction)
 
+# @app.route("/view1")
+# def userFetch1():
+#     text.create_all()
+#     allUsers=combos.query.all()
+#     diction = {"pairs":[]}
+#     for x in allUsers:
+#         diction["pairs"].append({"plaintext":x.plainText})
+#         # strf += str(x.rollnumber)+" "+x.name+" "+x.email + "\n"
+#     return jsonify(diction)
 
+# function to check whether the text passed as parameter consists of something other than the binary bits
+# if it consists of something else then the function will return 0 else it will return 1
 def check_valid_text(text):
 	for x in text:
 		if x!='1' and x!='0':
