@@ -66,6 +66,8 @@ class binaryString(object):
 
                output+=And(self.text[i],new.text[i])
         return output
+    # The functions below and above are almost same the only difference is that we are 
+    # adding the data into database in the function above whike nit in the function below.
     def __mul__(self,new):
         if len(self.text) > len(new.text):
             raise KeyToSmallError
@@ -175,6 +177,15 @@ def form1b4():
 @app.route('/form2b1',methods= ['POST'])
 def form2b1():
     key = request.form['key2']
+    try:
+        text1=binaryString(key)
+    except NullError:
+        return jsonify({'output':"Missing Key!"})  
+    except BinaryError:
+        return jsonify({'output':"Enter binary string!"})   
+    except KeyToSmallError:
+        return jsonify({'output':"Key too small!"})
+
     if key :
         output=""
         text.create_all()
@@ -224,11 +235,57 @@ def form4b():
 
 @app.route('/form3',methods= ['POST'])
 def form3():
+    key=request.form['key2']
+    response=request.form['response']
     m1 = request.form['m1']
     m2 = request.form['m2']
-    if m1 and m2:
-        return jsonify({'output':"Wow At Last you have done it"})
-    return jsonify({'error' : 'Missing data!'})
+    if not key:
+        return jsonify({'output':"Please enter key"})
+    if response:
+        try:
+            text2=binaryString(key)
+        except NullError:
+            return jsonify({'output':"Missing data!"})  
+        except BinaryError:
+            return jsonify({'output':"Enter binary string!"})   
+        except KeyToSmallError:
+            return jsonify({'output':"Key too small!"})
+
+        if response=='Yes':
+            text.create_all()
+            allUsers=combos.query.all()
+            for x in allUsers:
+                text1=binaryString(x.plainText)
+                text2=binaryString(key)
+                ans=text1*text2
+                for y in allUsers:
+                    text3=binaryString(y.plainText)
+                    text4=binaryString(key)
+                    ans1=text3*text4
+                    if ans==ans1 and x.plainText!=y.plainText:
+                        return jsonify({'output':"Wrong Answer"+" "+x.plainText+" "+y.plainText})
+            return jsonify({'output':"Right Answer"})        
+        elif response=='No':
+            if m1 and m2:
+                try:
+                    text1=binaryString(m1)
+                    text2=binaryString(m2)
+                    Key=binaryString(key)
+                except NullError:
+                    return jsonify({'output':"Missing data!"})  
+                except BinaryError:
+                    return jsonify({'output':"Enter binary string!"})   
+                except KeyToSmallError:
+                    return jsonify({'output':"Key too small!"})
+                if text1*Key==text2*Key and m1!=m2:
+                    return jsonify({'output':"Correct Answer"})
+                else:
+                    return jsonify({'output':"Wrong Answer"})
+            else:
+                return jsonify({'output':"Please enter m1 and m2"})
+        else:   
+            return jsonify({'output':"Please Enter Yes/No"})
+    return jsonify({'output' : 'Please Enter Yes/No!'})
 
 
 #function to add plaintext and key value to the database

@@ -70,7 +70,9 @@ input and try to break it. <br>Put your key here (between size 6 and 12): </br><
     </p>
   </form>
   </br>
+  <div id="Answer4">
 
+  </div>
  <h2>
       Simulator
   </h2>
@@ -227,6 +229,8 @@ $("#encryptionset").click(function(event){
     $("#CheckAnswer3").click(function(event){
       $.ajax({
         data : {
+          key2 : $('#key2').val(),
+          response : $('#response3').val(),
           m1 : $('#m13').val(),
           m2: $('#m23').val(),
         },
@@ -235,7 +239,7 @@ $("#encryptionset").click(function(event){
       })
       .done(function(data) {
         // $('#output').text(data.output).show();
-       document.getElementById("CypherText4").value=data.output 
+       document.getElementById("Answer4").innerHTML=data.output 
         
       });
       event.preventDefault();
