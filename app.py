@@ -13,6 +13,9 @@ db = SQLAlchemy(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///text.db'
 text = SQLAlchemy(app)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
+quiz = SQLAlchemy(app)
+
 class Error(Exception):
    """Base class for other exceptions"""
    pass
@@ -109,6 +112,21 @@ class combos(text.Model):
     def __repr__(self):
         return '<User %r>' % self.plainText
 
+class Questionclass(quiz.Model):
+    id = quiz.Column(quiz.Integer, primary_key=True)
+    Question = quiz.Column(quiz.String)
+    Option1 = quiz.Column(quiz.String)
+    Option2 = quiz.Column(quiz.String)
+    Option3 = quiz.Column(quiz.String)
+    Answer = quiz.Column(quiz.String)
+
+    def __init__(self,Question, Option1,Option2, Option3,Answer):
+        self.Question = Question
+        self.Option1 = Option1
+        self.Option2 = Option2
+        self.Option3 = Option3
+        self.Answer = Answer
+
 @app.route('/')
 def Root():
     return render_template("Introduction.html")
@@ -127,9 +145,13 @@ def Theory():
 @app.route('/Manual.html')
 def Manual():
     return render_template('Manual.html')
-@app.route('/Quizzes.html')
+@app.route('/Quizzes.html', methods=['POST', 'GET'])
 def Quizzes():
-    return render_template('Quizzes.html')
+    quiz.create_all()
+    allUsers=Questionclass.query.all()
+    global arr
+    arr=random.sample(range(0, 9), 5)
+    return render_template('Quizzes.html', Question1=allUsers[arr[0]],Question2=allUsers[arr[1]],Question3=allUsers[arr[2]],Question4=allUsers[arr[3]],Question5=allUsers[arr[4]])
 @app.route('/Procedure.html')
 def Procedure():
     return render_template('Procedure.html')
@@ -287,7 +309,54 @@ def form3():
             return jsonify({'output':"Please Enter Yes/No"})
     return jsonify({'output' : 'Please Enter Yes/No!'})
 
-
+@app.route('/check',methods= ['POST'])
+def check():
+    R1=request.form['Q1']
+    R2=request.form['Q2']
+    R3=request.form['Q3']
+    R4=request.form['Q4']
+    R5=request.form['Q5']
+    quiz.create_all()
+    allUsers=Questionclass.query.all()
+    Correct="Correct Answers : "
+    Wrong="Wrong Answers : "
+    Unattempted="Unattempted  : "
+    
+    global arr
+    if R1==allUsers[arr[0]].Answer:
+        Correct+="1 "
+    elif R1=='4':
+        Unattempted+="1 "
+    else:
+        Wrong+="1 "
+    if R2==allUsers[arr[1]].Answer:
+        Correct+="2 "
+    elif R2=='4':
+        Unattempted+="2 "
+    else:
+        Wrong+="2 "
+    if R3==allUsers[arr[2]].Answer:
+        Correct+="3 "
+    elif R3=='4':
+        Unattempted+="3 "
+    else:
+        Wrong+="3 "
+    if R4==allUsers[arr[3]].Answer:
+        Correct+="4 "
+    elif R4=='4':
+        Unattempted+="4 "
+    else:
+        Wrong+="4 "
+    if R5==allUsers[arr[4]].Answer:
+        Correct+="5 "
+    elif R5=='4':
+        Unattempted+="5 "
+    else:
+        Wrong+="5 "
+    Correct+="\n"
+    Wrong+="\n"
+    Unattempted+="\n"
+    return jsonify({'output':Correct+Wrong+Unattempted})
 #function to add plaintext and key value to the database
 def addInDb(plaintext,key):
     db.create_all()
@@ -300,33 +369,19 @@ def addInDb(plaintext,key):
     	new_item=text_key(plaintext,key)
     	db.session.add(new_item)
     	db.session.commit()
-# def addintext(plaintext):
-#     text.create_all()
-#     allUsers=combos.query.all()
-#     new_item=combos(plaintext)
-#     text.session.add(new_item)
-#     text.session.commit()
+
 
 # temporary function to view what is stored in the database
 @app.route("/view")
 def userFetch():
-    db.create_all()
-    allUsers=text_key.query.all()
-    diction = {"pairs":[]}
+    quiz.create_all()
+    allUsers=Questionclass.query.all()
+    diction = {"Questions":[]}
     for x in allUsers:
-        diction["pairs"].append({"plaintext":x.plainText,"key":x.key})
-        # strf += str(x.rollnumber)+" "+x.name+" "+x.email + "\n"
+        diction["Questions"].append({"Question":x.Question,"Option1":x.Option1,"Option2":x.Option2,"Option3":x.Option3})
     return jsonify(diction)
 
-# @app.route("/view1")
-# def userFetch1():
-#     text.create_all()
-#     allUsers=combos.query.all()
-#     diction = {"pairs":[]}
-#     for x in allUsers:
-#         diction["pairs"].append({"plaintext":x.plainText})
-#         # strf += str(x.rollnumber)+" "+x.name+" "+x.email + "\n"
-#     return jsonify(diction)
+
 
 # function to check whether the text passed as parameter consists of something other than the binary bits
 # if it consists of something else then the function will return 0 else it will return 1

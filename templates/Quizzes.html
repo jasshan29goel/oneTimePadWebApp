@@ -1,15 +1,110 @@
 {% extends "index.html" %}
 {% block content %}
-<div class="content" id="experiment-article-section-6-content">
-<ul>
-<li> Prove that if only a single character is encrypted, then the shift cipher is perfectly secret.</li>
-<li>What is the largest plaintext space M you can find for which the
-mono-alphabetic substitution cipher provides perfect secrecy? (Note: M
-need not contain only valid English words.)<br>
-</br></li>
-<li>Show how to use the Vigenere cipher to encrypt any word of length
-t so that perfect secrecy is obtained (Note: you can choose the length
-of the key).</li>
-</ul>
-</div>		
+<div>
+	<form id="Q-1">
+	Q1. {{ Question1.Question }}
+<br/>	<input type="radio" name="Q1" value="1"> {{ Question1.Option1 }}
+<br/>	<input type="radio" name="Q1" value="2"> {{ Question1.Option2 }}
+<br/>	<input type="radio" name="Q1" value="3"> {{ Question1.Option3 }}
+	</form>
+</div>
+<div>
+	<form id="Q-2">
+	Q2. {{ Question2.Question }}
+<br/>	<input type="radio" name="Q2" value="1"> {{ Question2.Option1 }}
+<br/>	<input type="radio" name="Q2" value="2"> {{ Question2.Option2 }}
+<br/>	<input type="radio" name="Q2" value="3"> {{ Question2.Option3 }}
+	</form>
+</div>
+<div>
+	<form id="Q-3">
+	Q3. {{ Question3.Question }}
+<br/>	<input type="radio" name="Q3" value="1"> {{ Question3.Option1 }}
+<br/>	<input type="radio" name="Q3" value="2"> {{ Question3.Option2 }}
+<br/>	<input type="radio" name="Q3" value="3"> {{ Question3.Option3 }}
+	</form>
+</div>
+<div>
+	<form id="Q-4">
+	Q4. {{ Question4.Question }}
+<br/>	<input type="radio" name="Q4" value="1"> {{ Question4.Option1 }}
+<br/>	<input type="radio" name="Q4" value="2"> {{ Question4.Option2 }}
+<br/>	<input type="radio" name="Q4" value="3"> {{ Question4.Option3 }}
+	</form>
+</div>
+<div>
+	<form id="Q-5">
+	Q5. {{ Question5.Question }}
+<br/>	<input type="radio" name="Q5" value="1"> {{ Question5.Option1 }}
+<br/>	<input type="radio" name="Q5" value="2"> {{ Question5.Option2 }}
+<br/>	<input type="radio" name="Q5" value="3"> {{ Question5.Option3 }}
+	</form>
+
+	<button   id="Submit" >Submit</button>
+
+</div>
+
+
+
+
+
+
+
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+
+<script type="text/javascript">
+	// $('#Q-1').on('change', function() {
+	$("#Submit").click(function(event){ 
+    	if ($('input[name=Q1]:checked', '#Q-1').val()) {
+			A1 = $('input[name=Q1]:checked', '#Q-1').val();
+		}
+		else
+		{
+			A1=4;
+		}
+		if ($('input[name=Q2]:checked', '#Q-2').val()) {
+			A2 = $('input[name=Q2]:checked', '#Q-2').val();
+		}
+		else
+		{
+			A2=4;
+		}
+		if ($('input[name=Q3]:checked', '#Q-3').val()) {
+			A3 = $('input[name=Q3]:checked', '#Q-3').val();
+		}
+		else
+		{
+			A3=4;
+		}
+		if ($('input[name=Q4]:checked', '#Q-4').val()) {
+			A4 = $('input[name=Q4]:checked', '#Q-4').val();
+		}
+		else
+		{
+			A4=4;
+		}
+		if ($('input[name=Q5]:checked', '#Q-5').val()) {
+			A5 = $('input[name=Q5]:checked', '#Q-5').val();
+		}
+		else
+		{
+			A5=4;
+		}
+   $.ajax({
+        data : {
+			Q1:A1,
+			Q2:A2,
+			Q3:A3,
+			Q4:A4,
+			Q5:A5,
+        },
+        type : 'POST',
+        url : '/check'
+      })
+      .done(function(data) {
+        alert(data.output) 
+      });
+      event.preventDefault();
+});
+</script>
 {% endblock content %}
