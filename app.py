@@ -214,7 +214,8 @@ def form2b1():
         # allUsers=combos.query.all()
         res=["".join(seq) for seq in itertools.product("01", repeat=8)]
         for x in res:
-            # addintext(i)
+            # addintext(x)
+
             text1=binaryString(x)
             text2=binaryString(key)
             output+=x+","+text1*text2+"\n"
@@ -370,7 +371,12 @@ def addInDb(plaintext,key):
     	new_item=text_key(plaintext,key)
     	db.session.add(new_item)
     	db.session.commit()
-
+def addintext(plaintext):
+    text.create_all()
+    allUsers=combos.query.all()
+    new_item=combos(plaintext)
+    text.session.add(new_item)
+    text.session.commit()
 
 # temporary function to view what is stored in the database
 @app.route("/view")
@@ -390,6 +396,14 @@ def userFetch1():
     for x in allUsers:
         diction["text"].append({"text":x.plainText})
     return jsonify(diction)
+@app.route('/delete')
+def delete():
+    text.create_all()
+    allUsers=combos.query.all()
+    for x in allUsers:
+        text.session.delete(x)
+    text.session.commit()
+    return "0"
 
 
 # function to check whether the text passed as parameter consists of something other than the binary bits
