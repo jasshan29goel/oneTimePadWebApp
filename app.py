@@ -210,13 +210,14 @@ def form2b1():
 
     if key :
         output=""
-        text.create_all()
-        allUsers=combos.query.all()
-        for x in allUsers:
+        # text.create_all()
+        # allUsers=combos.query.all()
+        res=["".join(seq) for seq in itertools.product("01", repeat=8)]
+        for x in res:
             # addintext(i)
-            text1=binaryString(x.plainText)
+            text1=binaryString(x)
             text2=binaryString(key)
-            output+=x.plainText+","+text1*text2+"\n"
+            output+=x+","+text1*text2+"\n"
         return jsonify({'output' : output}) 
     return jsonify({'output' : 'Missing data!'})
 
@@ -381,6 +382,14 @@ def userFetch():
         diction["Questions"].append({"Question":x.Question,"Option1":x.Option1,"Option2":x.Option2,"Option3":x.Option3})
     return jsonify(diction)
 
+@app.route("/view1")
+def userFetch1():
+    text.create_all()
+    allUsers=combos.query.all()
+    diction = {"text":[]}
+    for x in allUsers:
+        diction["text"].append({"text":x.plainText})
+    return jsonify(diction)
 
 
 # function to check whether the text passed as parameter consists of something other than the binary bits
