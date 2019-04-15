@@ -1,4 +1,4 @@
-README v0.0 / 15 JUNE 2019
+README v0.0 / 15 APRIL 2019
 
 # One Time Pad and Perfect Secrecy
 
