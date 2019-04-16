@@ -5,7 +5,7 @@ README v0.0 / 15 APRIL 2019
 ## Introduction
 
 The project is one of the experiments of the virtual lab (cryptography lab) of IIITH
-Standard template of the frontend is used and the backend is made using python
+Standard template of the frontend is used and the backend is made using python.
 
 ## Usage
 
@@ -19,7 +19,7 @@ then open localhost:5000 on your web browser
 ## Installation
 python version 3.5.0 or above
 flask
-sqlAlchemy
+flask_sqlAlchemy
 
 ## About the code
 
@@ -51,14 +51,15 @@ All of these have a seperate redirection function so as to generate different re
 Also there are custom functions in this file and to make viewing what is stored in the database easier
 All the fuctions and variables have intutive names so that debugging is easier
 
-### the test_app.py
+### The test_app.py
 This file contains the unit test cases
 
-### the createdatabasequiz.py
+### The createdatabasequiz.py
 This file can be run when one wants to generate the database
 
 ## Credits
 
-Manish 
+Manish
+
 Jasshan Goel
 
