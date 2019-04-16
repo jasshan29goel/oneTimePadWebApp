@@ -3,6 +3,7 @@
 
 # app = Flask(__name__)
 
+
 class Spam(object):
     def __init__(self, description, value):
         self.description = description
@@ -14,7 +15,8 @@ class Spam(object):
 
     @description.setter
     def description(self, d):
-        if not d: raise Exception("description cannot be empty")
+        if not d:
+            raise Exception("description cannot be empty")
         self._description = d
 
     @property
@@ -23,9 +25,12 @@ class Spam(object):
 
     @value.setter
     def value(self, v):
-        if not (v > 0): raise Exception("value must be greater than zero")
+        if not (v > 0):
+            raise Exception("value must be greater than zero")
         self._value = v
-mans=Spam(134, -2)
+
+
+mans = Spam(134, -2)
 
 # if __name__ == '__main__':
 #     app.run(debug=True)
