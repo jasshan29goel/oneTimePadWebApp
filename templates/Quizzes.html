@@ -43,7 +43,7 @@
 		<br/>	<input type="radio" name="Q5" value="2"> {{ Question5.Option2 }}
 		<br/>	<input type="radio" name="Q5" value="3"> {{ Question5.Option3 }}
 	</form>
-<br>
+	<br>
 	<button   id="Submit" >Submit</button>
 	<button   id="Reset" >New Question Set</button>
 
@@ -58,60 +58,60 @@
 <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
 
 <script type="text/javascript">
-		$("#Submit").click(function(event){ 
-			if ($('input[name=Q1]:checked', '#Q-1').val()) {
-				A1 = $('input[name=Q1]:checked', '#Q-1').val();
-			}
-			else
-			{
-				A1=4;
-			}
-			if ($('input[name=Q2]:checked', '#Q-2').val()) {
-				A2 = $('input[name=Q2]:checked', '#Q-2').val();
-			}
-			else
-			{
-				A2=4;
-			}
-			if ($('input[name=Q3]:checked', '#Q-3').val()) {
-				A3 = $('input[name=Q3]:checked', '#Q-3').val();
-			}
-			else
-			{
-				A3=4;
-			}
-			if ($('input[name=Q4]:checked', '#Q-4').val()) {
-				A4 = $('input[name=Q4]:checked', '#Q-4').val();
-			}
-			else
-			{
-				A4=4;
-			}
-			if ($('input[name=Q5]:checked', '#Q-5').val()) {
-				A5 = $('input[name=Q5]:checked', '#Q-5').val();
-			}
-			else
-			{
-				A5=4;
-			}
-			$.ajax({
-				data : {
-					Q1:A1,
-					Q2:A2,
-					Q3:A3,
-					Q4:A4,
-					Q5:A5,
-				},
-				type : 'POST',
-				url : '/check'
-			})
-			.done(function(data) {
-				alert(data.output) 
-			});
-			event.preventDefault();
+	$("#Submit").click(function(event){ 
+		if ($('input[name=Q1]:checked', '#Q-1').val()) {
+			A1 = $('input[name=Q1]:checked', '#Q-1').val();
+		}
+		else
+		{
+			A1=4;
+		}
+		if ($('input[name=Q2]:checked', '#Q-2').val()) {
+			A2 = $('input[name=Q2]:checked', '#Q-2').val();
+		}
+		else
+		{
+			A2=4;
+		}
+		if ($('input[name=Q3]:checked', '#Q-3').val()) {
+			A3 = $('input[name=Q3]:checked', '#Q-3').val();
+		}
+		else
+		{
+			A3=4;
+		}
+		if ($('input[name=Q4]:checked', '#Q-4').val()) {
+			A4 = $('input[name=Q4]:checked', '#Q-4').val();
+		}
+		else
+		{
+			A4=4;
+		}
+		if ($('input[name=Q5]:checked', '#Q-5').val()) {
+			A5 = $('input[name=Q5]:checked', '#Q-5').val();
+		}
+		else
+		{
+			A5=4;
+		}
+		$.ajax({
+			data : {
+				Q1:A1,
+				Q2:A2,
+				Q3:A3,
+				Q4:A4,
+				Q5:A5,
+			},
+			type : 'POST',
+			url : '/check'
+		})
+		.done(function(data) {
+			alert(data.output) 
 		});
-		$("#Reset").click(function(event){ 
-			location.reload();
-		});
-	</script>
-	{% endblock content %}
+		event.preventDefault();
+	});
+	$("#Reset").click(function(event){ 
+		location.reload();
+	});
+</script>
+{% endblock content %}

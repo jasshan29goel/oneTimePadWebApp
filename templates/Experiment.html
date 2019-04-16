@@ -1,253 +1,253 @@
-{% extends "index.html" %}
-{% block content %}
-	
+  {% extends "index.html" %}
+  {% block content %}
+  
   <h2>Testing Perfect Secrecy using Shannon's Theorem<br>
-</br></h2>
-<p>
-			Is the following encryption scheme perfectly secure?
-			You can observe as many encrypted text and key pairs as you wish.
-			Press "Next Plaintext" method to get more pairs.</p>
-<form >
-          <p>
-          <label for="plainText1">Plaintext</label>
-          <input id="plainText1" />
-          <button id="nextPlainText1" >Next Plaintext</button>
-          </p>
-          <p>
-          <label for="key1">Key</label>
-          <input id="key1" />
-          <button id="nextKey1" >Next Key</button>
-          </p>
-          <button id="encrypt1" >Encrypt</button>
-          <p>
-          <label for="cipher1">Cipher Text</label>
-          <input id="cipher1" />
-          </p>
-      </form>
+  </br></h2>
   <p>
-           <button id="nextencryptionscheme" >Next Encryption Scheme</button>
-        </p>
+     Is the following encryption scheme perfectly secure?
+     You can observe as many encrypted text and key pairs as you wish.
+ Press "Next Plaintext" method to get more pairs.</p>
+ <form >
+  <p>
+    <label for="plainText1">Plaintext</label>
+    <input id="plainText1" />
+    <button id="nextPlainText1" >Next Plaintext</button>
+</p>
+<p>
+    <label for="key1">Key</label>
+    <input id="key1" />
+    <button id="nextKey1" >Next Key</button>
+</p>
+<button id="encrypt1" >Encrypt</button>
+<p>
+    <label for="cipher1">Cipher Text</label>
+    <input id="cipher1" />
+</p>
+</form>
+<p>
+   <button id="nextencryptionscheme" >Next Encryption Scheme</button>
+</p>
 <p>For all the possible pairs of plaintext of
-size 8, and the key given by you, we will provide you with the
-encrypted texts with the same encryption scheme. You can observe the
-input and try to break it. <br>Put your key here (between size 6 and 12): </br></p> <form >
-        <p>
-           <button id="encryptionset" >Encryption set</button>
-           
-         </p>
-         <p>
-         <label for="key2">Key</label>
-          <input id="key2" />
-        </p> 
-            Multiple tuples of &lt;Plaintext, Ciphertext&gt;:
-          <br/>
-          <br/>
-        <textarea id="pair2"></textarea>
-      </form>
-       <h2>
-            Is the given encryption scheme secure?
-        </h2>
-        <hr/>
-  <form>
-      <p>
-      <label  for="response3">Yes/No</label>
-      <input type="text"  id="response3" >
-      </p>
-      <p>
-                If NO, Give two plaintexts 'm1' and 'm2' for the above key such that Encryption(m1) = Encryption(m2)?
-      </p>
-      <p>
-      <label  for="m13">m1</label>
-      <input type="text"  id="m13" >
-      </p>
-      <p>
+  size 8, and the key given by you, we will provide you with the
+  encrypted texts with the same encryption scheme. You can observe the
+  input and try to break it. <br>Put your key here (between size 6 and 12): </br></p> <form >
+    <p>
+       <button id="encryptionset" >Encryption set</button>
+       
+   </p>
+   <p>
+       <label for="key2">Key</label>
+       <input id="key2" />
+   </p> 
+   Multiple tuples of &lt;Plaintext, Ciphertext&gt;:
+   <br/>
+   <br/>
+   <textarea id="pair2"></textarea>
+</form>
+<h2>
+  Is the given encryption scheme secure?
+</h2>
+<hr/>
+<form>
+  <p>
+    <label  for="response3">Yes/No</label>
+    <input type="text"  id="response3" >
+</p>
+<p>
+    If NO, Give two plaintexts 'm1' and 'm2' for the above key such that Encryption(m1) = Encryption(m2)?
+</p>
+<p>
+    <label  for="m13">m1</label>
+    <input type="text"  id="m13" >
+</p>
+<p>
  
-      <label  for="m23">m2</label>
-      <input type="text" id="m23" >
-      </p>
-    <p>
-          <button   id="CheckAnswer3" >Check Answer</button>  
-    </p>
-  </form>
-  </br>
-  <div id="Answer4">
+    <label  for="m23">m2</label>
+    <input type="text" id="m23" >
+</p>
+<p>
+    <button   id="CheckAnswer3" >Check Answer</button>  
+</p>
+</form>
+</br>
+<div id="Answer4">
 
-  </div>
- <h2>
-      Simulator
-  </h2>
-  <hr/><br/>
-  <form class="form-inline">
-      <p>
-      <label for="PlainText4">PlainText</label>
-      <input type="text"  id="PlainText4" >
-      </p>
-      <p>
-      <label  for="Key4">Key</label>
-      <input type="text"  id="Key4" >
-      </p>
-      <p>
-        <button   id="Encrypt4" >Encrypt</button>
-        <button   id="Decrypt4" >Decrypt</button>
-      </p>
-    <p>
-        <label  for="CypherText4">CypherText</label>
-      <br>
-      <input type="text"  id="CypherText4" >
+</div>
+<h2>
+  Simulator
+</h2>
+<hr/><br/>
+<form class="form-inline">
+  <p>
+    <label for="PlainText4">PlainText</label>
+    <input type="text"  id="PlainText4" >
+</p>
+<p>
+    <label  for="Key4">Key</label>
+    <input type="text"  id="Key4" >
+</p>
+<p>
+    <button   id="Encrypt4" >Encrypt</button>
+    <button   id="Decrypt4" >Decrypt</button>
+</p>
+<p>
+    <label  for="CypherText4">CypherText</label>
+    <br>
+    <input type="text"  id="CypherText4" >
     
-    </p>
-  </form>
+</p>
+</form>
 
 
 </div>
 <!-- jQuery -->
-  <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
 
-  <!-- Bootstrap Core JavaScript -->
-  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
-  <!-- Custom Theme JavaScript -->
-  <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
-  
-  <!-- Include js plugin -->
-  <script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
-  
+<!-- Custom Theme JavaScript -->
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+<!-- Include js plugin -->
+<script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#encrypt1").click(function(event){
-      $.ajax({
-        data : {
-          plainText1 : $('#plainText1').val(),
-          key1 : $('#key1').val(),
-        },
-        type : 'POST',
-        url : '/form1b3'
+          $.ajax({
+            data : {
+              plainText1 : $('#plainText1').val(),
+              key1 : $('#key1').val(),
+          },
+          type : 'POST',
+          url : '/form1b3'
       })
-      .done(function(data) {
+          .done(function(data) {
         // $('#output').text(data.output).show();
         document.getElementById("cipher1").value=data.output 
       // document.getElementById("firstName").innerHTML = data.output
+  });
+          event.preventDefault();
       });
-      event.preventDefault();
-    });
 
 
      $("#nextKey1").click(function(event){
-      $.ajax({
-        data : {
-          plainText1 : $('#plainText1').val(),
+        $.ajax({
+          data : {
+            plainText1 : $('#plainText1').val(),
         },
         type : 'POST',
         url : '/form1b2'
-      })
-      .done(function(data) {
+    })
+        .done(function(data) {
         // $('#output').text(data.output).show();
         document.getElementById("key1").value=data.output 
       // document.getElementById("firstName").innerHTML = data.output
-      });
-      event.preventDefault();
+  });
+        event.preventDefault();
     });
 
-$("#nextPlainText1").click(function(event){
-      $.ajax({
-        data : {
-          key1 : $('#key1').val(),
+     $("#nextPlainText1").click(function(event){
+        $.ajax({
+          data : {
+            key1 : $('#key1').val(),
         },
         type : 'POST',
         url : '/form1b1'
-      })
-      .done(function(data) {
+    })
+        .done(function(data) {
         // $('#output').text(data.output).show();
         document.getElementById("plainText1").value=data.output 
       // document.getElementById("firstName").innerHTML = data.output
-      });
-      event.preventDefault();
+  });
+        event.preventDefault();
     });
-  $("#nextencryptionscheme").click(function(event){
-      $.ajax({
-        data : {
-         dummy : 10,
-        },
-        type : 'POST',
-        url : '/form1b4'
-      })
-      
-      event.preventDefault();
+     $("#nextencryptionscheme").click(function(event){
+        $.ajax({
+          data : {
+             dummy : 10,
+         },
+         type : 'POST',
+         url : '/form1b4'
+     })
+        
+        event.preventDefault();
     });
 
 
-$("#encryptionset").click(function(event){
-      $.ajax({
-        data : {
-          
-         key2 : $('#key2').val(),
-        },
-        type : 'POST',
-        url : '/form2b1'
-      })
-      .done(function(data) {
+     $("#encryptionset").click(function(event){
+        $.ajax({
+          data : {
+            
+             key2 : $('#key2').val(),
+         },
+         type : 'POST',
+         url : '/form2b1'
+     })
+        .done(function(data) {
         // $('#output').text(data.output).show();
         document.getElementById("pair2").value=data.output 
       // document.getElementById("firstName").innerHTML = data.output
-      });
-      event.preventDefault();
+  });
+        event.preventDefault();
     });
 
-    $("#Encrypt4").click(function(event){
-      $.ajax({
-        data : {
-          PlainText : $('#PlainText4').val(),
-          Key: $('#Key4').val(),
+     $("#Encrypt4").click(function(event){
+        $.ajax({
+          data : {
+            PlainText : $('#PlainText4').val(),
+            Key: $('#Key4').val(),
         },
         type : 'POST',
         url : '/form4a'
-      })
-      .done(function(data) {
+    })
+        .done(function(data) {
         // $('#output').text(data.output).show();
-      document.getElementById("CypherText4").value=data.output 
+        document.getElementById("CypherText4").value=data.output 
         
-      });
-      event.preventDefault();
     });
-    $("#Decrypt4").click(function(event){
-      $.ajax({
-        data : {
-          CypherText : $('#CypherText4').val(),
-          Key: $('#Key4').val(),
+        event.preventDefault();
+    });
+     $("#Decrypt4").click(function(event){
+        $.ajax({
+          data : {
+            CypherText : $('#CypherText4').val(),
+            Key: $('#Key4').val(),
         },
         type : 'POST',
         url : '/form4b'
-      })
-      .done(function(data) {
-        $('#output').text(data.output).show();
-      document.getElementById("PlainText4").value=data.output 
-        
+    })
+        .done(function(data) {
+          $('#output').text(data.output).show();
+          document.getElementById("PlainText4").value=data.output 
+          
       });
-      event.preventDefault();
+        event.preventDefault();
     });
-    $("#CheckAnswer3").click(function(event){
-      $.ajax({
-        data : {
-          key2 : $('#key2').val(),
-          response : $('#response3').val(),
-          m1 : $('#m13').val(),
-          m2: $('#m23').val(),
+     $("#CheckAnswer3").click(function(event){
+        $.ajax({
+          data : {
+            key2 : $('#key2').val(),
+            response : $('#response3').val(),
+            m1 : $('#m13').val(),
+            m2: $('#m23').val(),
         },
         type : 'POST',
         url : '/form3'
-      })
-      .done(function(data) {
+    })
+        .done(function(data) {
         // $('#output').text(data.output).show();
-       document.getElementById("Answer4").innerHTML=data.output 
+        document.getElementById("Answer4").innerHTML=data.output 
         
-      });
-      event.preventDefault();
     });
-		 
+        event.preventDefault();
+    });
+     
 
-	 
-	});
+     
+ });
 
 
 </script>

@@ -1,27 +1,27 @@
 {% extends "index.html" %}
 {% block content %}
 <div class="content" id="experiment-article-section-2-content">
-<p>
-	Vernam proposed a bit-wise exclusive or of the message stream with a
-	truely random zero-one stream which was shared by sender and receipient.
+	<p>
+		Vernam proposed a bit-wise exclusive or of the message stream with a
+		truely random zero-one stream which was shared by sender and receipient.
 	</p>
-<pre>
-	Example:<br><br>   SENDING<br>   -------<br>   message: 0 0 1 0 1 1 0 1 0 1 1 1 ...<br>   pad:     1 0 0 1 1 1 0 0 1 0 1 1 ...<br>   XOR      ---------------------------<br>   cipher:  1 0 1 1 0 0 0 1 1 1 0 0 ...<br><br>   RECEIVING<br>   ---------<br>   cipher:  1 0 1 1 0 0 0 1 1 1 0 0 ...<br>   pad:     1 0 0 1 1 1 0 0 1 0 1 1 ...<br>   XOR      ---------------------------<br>   message: 0 0 1 0 1 1 0 1 0 1 1 1 ...<br>
+	<pre>
+		Example:<br><br>   SENDING<br>   -------<br>   message: 0 0 1 0 1 1 0 1 0 1 1 1 ...<br>   pad:     1 0 0 1 1 1 0 0 1 0 1 1 ...<br>   XOR      ---------------------------<br>   cipher:  1 0 1 1 0 0 0 1 1 1 0 0 ...<br><br>   RECEIVING<br>   ---------<br>   cipher:  1 0 1 1 0 0 0 1 1 1 0 0 ...<br>   pad:     1 0 0 1 1 1 0 0 1 0 1 1 ...<br>   XOR      ---------------------------<br>   message: 0 0 1 0 1 1 0 1 0 1 1 1 ...<br>
 	</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></pre><br><br>
-<p>
-	This cipher is unbreakable in a very strong sense. The intuition is
-	that any message can be transformed into any cipher (of the same
-	length) by a pad, and all transformations are equally likely. Given a
-	two letter message, there is a pad which adds to the message to give
-	OK, and another pad which adds to the message to give NO. Since either
-	of these pads are equally likely, the message is equally likely to be
-	OK or NO.
+	<p>
+		This cipher is unbreakable in a very strong sense. The intuition is
+		that any message can be transformed into any cipher (of the same
+		length) by a pad, and all transformations are equally likely. Given a
+		two letter message, there is a pad which adds to the message to give
+		OK, and another pad which adds to the message to give NO. Since either
+		of these pads are equally likely, the message is equally likely to be
+		OK or NO.
 	</p>
-<p>
-	For more details on the topic, click <a href="media/lec1.pdf">here</a><br>
-</br></p>
+	<p>
+		For more details on the topic, click <a href="./../static/media/lec1.pdf">here</a><br>
+	</br></p>
 </br></br></div>	
 {% endblock content %}
 
-			
+
 
