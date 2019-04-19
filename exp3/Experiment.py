@@ -2,52 +2,9 @@ from flask import Flask, request, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import random
 import itertools
-
-app = Flask(__name__)
-
-
-# database initialization
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-db = SQLAlchemy(app)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///text.db'
-text = SQLAlchemy(app)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
-quiz = SQLAlchemy(app)
-
-
-class Error(Exception):
-    """Base class for other exceptions"""
-    pass
-
-
-class NullError(Error):
-    """Raised when the input value is Null"""
-    pass
-
-
-class BinaryError(Error):
-    """Raised when the input value is Null"""
-    pass
-
-
-class KeyToSmallError(Error):
-    """Raised when the input value is Null"""
-    pass
-
-
-def randomNumberGenerator(arg):
-
-    stri = ""
-    if arg == 0:
-        arg = 8
-    for x in range(arg):
-        stri += str(random.randint(0, 1))
-    return stri
-
-
-currentEncryptionScheme = randomNumberGenerator(100)
+from exp3 import app
+from exp3 import db, text, quiz
+from exp3.models import binaryString, text_key, combos, Questionclass, Error, NullError, BinaryError, KeyToSmallError
 
 
 class binaryString(object):
@@ -101,45 +58,22 @@ class binaryString(object):
         return output
 
 
-# database element class
-class text_key(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    plainText = db.Column(db.String)
-    key = db.Column(db.String)
-
-    def __init__(self, plainText, key):
-        self.plainText = plainText
-        self.key = key
-
-    def __repr__(self):
-        return '<User %r>' % self.plainText
 
 
-class combos(text.Model):
-    id = text.Column(text.Integer, primary_key=True)
-    plainText = text.Column(text.String)
+def randomNumberGenerator(arg):
 
-    def __init__(self, plainText):
-        self.plainText = plainText
+    stri = ""
+    if arg == 0:
+        arg = 8
+    for x in range(arg):
+        stri += str(random.randint(0, 1))
+    return stri
 
-    def __repr__(self):
-        return '<User %r>' % self.plainText
+
+currentEncryptionScheme = randomNumberGenerator(100)
 
 
-class Questionclass(quiz.Model):
-    id = quiz.Column(quiz.Integer, primary_key=True)
-    Question = quiz.Column(quiz.String)
-    Option1 = quiz.Column(quiz.String)
-    Option2 = quiz.Column(quiz.String)
-    Option3 = quiz.Column(quiz.String)
-    Answer = quiz.Column(quiz.String)
 
-    def __init__(self, Question, Option1, Option2, Option3, Answer):
-        self.Question = Question
-        self.Option1 = Option1
-        self.Option2 = Option2
-        self.Option3 = Option3
-        self.Answer = Answer
 
 
 @app.route('/')
@@ -177,7 +111,7 @@ def Quizzes():
     quiz.create_all()
     allUsers = Questionclass.query.all()
     global arr
-    arr = random.sample(range(0, 9), 5)
+    arr = random.sample (range(0, 9), 5)
     return render_template('Quizzes.html', Question1=allUsers[arr[0]], Question2=allUsers[arr[1]],
                            Question3=allUsers[arr[2]], Question4=allUsers[arr[3]], Question5=allUsers[arr[4]])
 
@@ -400,6 +334,7 @@ def check():
     Wrong += "\n"
     Unattempted += "\n"
     return jsonify({'output': Correct + Wrong + Unattempted})
+
 # function to add plaintext and key value to the database
 
 
@@ -465,6 +400,8 @@ def check_valid_text(text):
         if x != '1' and x != '0':
             return 0
     return 1
+
+
 # function to calculate xor of two characters
 
 
@@ -490,5 +427,3 @@ def And(a, b):
         return "1"
 
 
-if __name__ == '__main__':
-    app.run(debug=True)

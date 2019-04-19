@@ -12,6 +12,7 @@ def test_form4a(var1,var2,var3):
 	response = requests.post('http://127.0.0.1:5000/form4a', files=files)
 	try :
 		assert response.json()["output"]==var3
+		print("Test passed")
 	except AssertionError:
 		print ("form4a test failed")
 		global c
@@ -26,6 +27,7 @@ def test_form4b(var1,var2,var3):
 	response = requests.post('http://127.0.0.1:5000/form4b', files=files)
 	try :
 		assert response.json()["output"]==var3
+		print("Test passed")
 	except AssertionError:
 		print ("form4b test failed")
 		global c
@@ -42,6 +44,7 @@ def test_form3(var1,var2,var3,var4,var5):
 	response = requests.post('http://127.0.0.1:5000/form3', files=files)
 	try :
 		assert response.json()["output"]==var5
+		print("Test passed")
 	except AssertionError:
 		print ("form3 test failed")
 		global c
@@ -56,6 +59,7 @@ def test_form1b3(var1,var2,var3):
 	try :
 		if var3:
 			assert response.json()["output"]==var3
+			print("Test passed")
 	except AssertionError:
 		print ("form1b3 test failed")
 		global c
