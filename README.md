@@ -56,55 +56,7 @@ pip3 install requests
 
 
 ## About the code
-├── exp3
-│   ├── check.py
-│   ├── createquizdatabase.py
-│   ├── Experiment.py
-│   ├── generate.py
-│   ├── __init__.py
-│   ├── models.py
-│   ├── __pycache__
-│   │   
-│   ├── quiz.db
-│   ├── static
-│   │   ├── css
-│   │   │   ├── bootstrap.min.css
-│   │   │   ├── style1.css
-│   │   │   ├── style.css
-│   │   │   └── style.css~
-│   │   ├── images
-│   │   │   
-│   │   ├── js
-│   │   │   ├── bootstrap.js
-│   │   │   ├── bootstrap.min.js
-│   │   │   ├── custom.js
-│   │   │   ├── jquery.js
-│   │   │   └── npm.js
-│   │   ├── media
-│   │   │   └── lec1.pdf
-│   │   ├── scripts
-│   │   │  
-│   │   └── vendors
-│   │       
-│   ├── templates
-│   │   ├── Experiment.html
-│   │   ├── Feedback.html
-│   │   ├── Further Readings.html
-│   │   ├── index.html
-│   │   ├── Introduction.html
-│   │   ├── Manual.html
-│   │   ├── Objective.html
-│   │   ├── Procedure.html
-│   │   ├── Quizzes.html
-│   │   └── Theory.html
-│   ├── Tests
-│   │   ├── app_testing.py
-│   │   ├── __pycache__
-│   │  	│   
-│   │   └── test_link.py
-│   └── toBeDone.html
-├── README.md
-└── run.py
+
 
 
 ### The templates directory:- 
