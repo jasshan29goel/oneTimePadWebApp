@@ -45,6 +45,7 @@ sudo apt install python3-pip
 pip3 install Flask
 sudo apt-get install sqlite3
 pip3 install sqlalchemy
+pip3 install -U Flask-SQLAlchemy
 pip3 install Markups
 pip3 install requests
 ```
